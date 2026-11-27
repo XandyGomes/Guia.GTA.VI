@@ -8,7 +8,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/PWA-funciona_offline-5A0FC8?style=flat-square&logo=pwa&logoColor=white" alt="PWA">
-  <img src="https://img.shields.io/badge/JavaScript-sem_dependências-323330?style=flat-square&logo=javascript&logoColor=F7DF1E" alt="JavaScript">
+  <img src="https://img.shields.io/badge/JavaScript-sem_depend%C3%AAncias-323330?style=flat-square&logo=javascript&logoColor=F7DF1E" alt="JavaScript">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
   <img src="https://img.shields.io/badge/IA-Gemini-4285F4?style=flat-square&logo=googlegemini&logoColor=white" alt="Gemini">
@@ -116,6 +116,10 @@ Os sites divergem em alguns preços e locais. Se o jogo mostrar diferente, vale 
 
 As páginas originais aparecem em cada tela do app e em *Guias → Fontes*. Se você é autor de algum conteúdo e quer que ele saia, [abra uma issue](https://github.com/XandyGomes/Guia.GTA.VI/issues).
 
+## 👨🏻‍🏫 Créditos
+
+**Desenvolvido por [Prof. Me. Xandy Gomes](https://github.com/XandyGomes)**, com contribuições de **Claude.IA**.
+
 ## ⚖️ Aviso
 
 Projeto de fã, **não oficial** e sem fins comerciais. Sem vínculo com a Rockstar Games ou a Take-Two Interactive. *Grand Theft Auto* e marcas relacionadas pertencem aos seus donos.
@@ -123,5 +127,6 @@ Projeto de fã, **não oficial** e sem fins comerciais. Sem vínculo com a Rocks
 ---
 
 <p align="center">
-  Feito por <a href="https://github.com/XandyGomes"><b>Alexandre Gomes</b></a> · bom jogo! 🌴
+  Desenvolvido por <a href="https://github.com/XandyGomes"><b>Prof. Me. Xandy Gomes</b></a> · contribuições de <b>Claude.IA</b><br>
+  Bom jogo! 🌴
 </p>

@@ -303,7 +303,9 @@ function telaGuia(id) {
     App.guia.missoes.forEach(m => (m.fontes || []).forEach(guardar));
     App.guia.colecoes.forEach(c => c.fontes.forEach(guardar));
     G.eggs.forEach(e => guardar(e.fonte)); G.raros.forEach(e => guardar(e.fonte));
-    h += `<div class="cartao"><p>Guia pessoal, feito por fã, sem vínculo com a Rockstar Games ou a Take-Two. Os textos são resumos em palavras próprias; as páginas originais têm fotos e mais detalhes.</p>
+    h += `<div class="cartao destaque"><h4>Créditos</h4><p>Desenvolvido por <strong>Prof. Me. Xandy Gomes</strong><br>
+      com contribuições de <strong>Claude.IA</strong></p><p>${link('https://github.com/XandyGomes', 'github.com/XandyGomes')}</p></div>
+      <div class="cartao"><p>Guia pessoal, feito por fã, sem vínculo com a Rockstar Games ou a Take-Two. Os textos são resumos em palavras próprias; as páginas originais têm fotos e mais detalhes.</p>
       <p>Mapa e locais: ${link('https://map.gtadb.org', 'GTA VI Map Tiles e Landmarks Data, gtadb.org e colaboradores')} (${link('https://creativecommons.org/licenses/by/4.0/', 'CC BY 4.0')}).<br>
       Marcadores: ${link('https://gta.fandom.com/wiki/Map:GTA_VI_Places_of_Interest', 'GTA Wiki no Fandom')} (CC BY-SA). Textos traduzidos e pinos convertidos para este app.<br>
       Locais das cartas: ${link('https://thegameswiki.com/gta6/wiki/collectible-card-sets', 'The Games Wiki')} (${link('https://creativecommons.org/licenses/by-nc-sa/4.0/', 'CC BY-NC-SA 4.0')}), traduzidos e resumidos; uso não comercial, sob a mesma licença.</p>
