@@ -73,6 +73,11 @@ const IA = (() => {
       for (let i = 0; i < c.itens.length; i += 8) add(`Locais de ${c.nome}`, c.itens.slice(i, i + 8).map(x => `${x.n}) ${x.texto} [${x.regiao}] ${x.obs}`).join(' | '));
     });
     const G = g.guias;
+    // helicópteros e aviões só existem como pinos do mapa
+    [['helicopteros', 'Helicópteros'], ['avioes', 'Aviões']].forEach(([cat, nome]) => {
+      const l = App.mapa.pontos.filter(p => p.c === cat);
+      for (let i = 0; i < l.length; i += 12) add(`${nome} no mapa (helicóptero avião aeronave, onde achar)`, l.slice(i, i + 12).map(p => `${p.t} [${p.r}] ${p.d.split('. Ponto')[0]}`).join(' | '));
+    });
     G.armas.forEach(a => add(`Arma ${a.nome} (${a.categoria})`, `${a.como_conseguir} ${a.local} preço ${a.preco} ${a.dica}`));
     G.raros.forEach(v => add(`Veículo raro ${v.nome} (${v.tipo})`, `${v.local} ${v.passos.join(' ')} ${v.obs}`));
     G.randy.forEach(v => add(`Carro da lista do Randy ${v.carro}`, `${v.onde} ${v.obs}`));

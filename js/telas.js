@@ -289,7 +289,11 @@ function telaGuia(id) {
       Object.entries(grupos).map(([g, l]) => `<h3>${esc(g)}</h3>` + l.map(a => caixa('arma-' + slug(a.nome), a.nome + (a.unica ? ' ★ única' : ''),
         [a.como_conseguir, a.local, a.preco, a.dica].filter(Boolean).join(' · '))).join('')).join('');
   } else if (id === 'veiculos') {
-    h += `${campoFiltro}<h3>Carros raros e especiais: onde pegar</h3>` + G.raros.map(v => caixa('raro-' + slug(v.nome), v.nome, `${v.local} ${v.obs}`,
+    const aereas = ['helicopteros', 'avioes'].map(c => Mapa.categoria(c)).filter(Boolean);
+    h += `<h3>Helicópteros e aviões no mapa</h3><div class="botoes">${aereas.map(c => `<a class="botao primario" href="#/mapa/c:${c.id}">${c.icone} ${esc(c.nome)} (${c.total})</a>`).join('')}
+      <a class="botao" href="#/mapa/c:${aereas.map(c => c.id).join(',')}">Ver os dois</a></div>
+      <p class="fraco">Toque num ícone para ver o modelo. A presença e o acesso podem variar durante o jogo.</p>` +
+      `${campoFiltro}<h3>Carros raros e especiais: onde pegar</h3>` + G.raros.map(v => caixa('raro-' + slug(v.nome), v.nome, `${v.local} ${v.obs}`,
       v.passos.length ? `<ul class="simples">${v.passos.map(p => `<li>${esc(p)}</li>`).join('')}</ul>` : '')).join('')
       + '<h3>Lista de desejos do Randy</h3>' + G.randy.map(v => caixa('randy-' + slug(v.carro), v.carro, `${v.onde}. ${v.obs || ''}`)).join('')
       + '<h3>Garagens</h3>' + G.garagens.map(v => caixa('gar-' + slug(v.nome), v.nome, [v.local, v.preco, v.como].filter(Boolean).join(' · '))).join('')
