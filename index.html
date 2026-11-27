@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Meu Guia de Leonida — GTA VI</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#14101f">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://generativelanguage.googleapis.com">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icones/icone-192.png">
+  <link rel="apple-touch-icon" href="icones/icone-192.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header id="topo">
+    <button class="voltar" id="btVoltar" aria-label="Voltar">‹</button>
+    <h1 id="tituloTopo">Meu Guia de Leonida</h1>
+    <a class="icone" href="#/busca" aria-label="Buscar">🔎</a>
+    <a class="icone" href="#/ajustes" aria-label="Ajustes">⚙️</a>
+  </header>
+
+  <main id="tela"><p class="carregando">Carregando o guia…</p></main>
+
+  <div id="mapaBox" hidden>
+    <canvas id="mapaCanvas" aria-label="Mapa de Leonida"></canvas>
+    <div class="mapa-barra">
+      <input id="mapaBusca" type="search" placeholder="Buscar no mapa (ex.: Ammu-Nation)" autocomplete="off">
+      <button id="btFiltros" class="botao">Filtros</button>
+    </div>
+    <ul id="mapaResultados" hidden></ul>
+    <div class="mapa-zoom">
+      <button id="btMais" aria-label="Aproximar">+</button>
+      <button id="btMenos" aria-label="Afastar">−</button>
+      <button id="btTudo" aria-label="Ver o mapa inteiro">⤢</button>
+    </div>
+    <div id="mapaFiltros" class="painel" hidden></div>
+    <div id="mapaCartao" class="cartao-mapa" hidden></div>
+    <div class="credito">Mapa e locais: gtadb.org (CC BY 4.0) · GTA Wiki/Fandom (CC BY-SA)</div>
+  </div>
+
+  <button id="btIA" aria-label="Perguntar à IA">🤖 <span>Perguntar</span></button>
+
+  <section id="ia" hidden aria-label="Assistente">
+    <div class="ia-caixa">
+      <div class="ia-topo">
+        <strong>Assistente do guia</strong>
+        <button id="iaLimpar" class="link">limpar</button>
+        <button id="iaFechar" aria-label="Fechar">✕</button>
+      </div>
+      <div id="iaContexto"></div>
+      <div id="iaMensagens"></div>
+      <form id="iaForm">
+        <textarea id="iaTexto" rows="2" placeholder="Escreva sua dúvida…"></textarea>
+        <button class="botao primario" id="iaEnviar">Enviar</button>
+      </form>
+    </div>
+  </section>
+
+  <nav id="abas">
+    <a href="#/" data-aba="rota"><b>🧭</b>Rota</a>
+    <a href="#/mapa" data-aba="mapa"><b>🗺️</b>Mapa</a>
+    <a href="#/colecoes" data-aba="colecoes"><b>🎒</b>Coleções</a>
+    <a href="#/guias" data-aba="guias"><b>📚</b>Guias</a>
+  </nav>
+
+  <div id="aviso" role="status" hidden></div>
+
+  <script src="js/base.js"></script>
+  <script src="js/mapa.js"></script>
+  <script src="js/ia.js"></script>
+  <script src="js/telas.js"></script>
+</body>
+</html>

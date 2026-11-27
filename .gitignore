@@ -1,0 +1,6 @@
+# não vão para a internet
+ferramentas/
+.claude/
+__pycache__/
+*.log
+meu-progresso-gta6.json
