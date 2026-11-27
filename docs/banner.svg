@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Guia GTA VI: meu guia de Leonida">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1033"/>
+      <stop offset="0.55" stop-color="#6d2477"/>
+      <stop offset="0.82" stop-color="#ff5fa8"/>
+      <stop offset="1" stop-color="#ff9f5a"/>
+    </linearGradient>
+    <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd166"/>
+      <stop offset="1" stop-color="#ff5fa8"/>
+    </linearGradient>
+    <clipPath id="cartao"><rect width="1200" height="360" rx="24"/></clipPath>
+  </defs>
+  <g clip-path="url(#cartao)">
+    <rect width="1200" height="360" fill="url(#ceu)"/>
+    <circle cx="950" cy="265" r="150" fill="url(#sol)" opacity="0.9"/>
+    <g fill="#1a1033" opacity="0.35">
+      <rect x="780" y="232" width="340" height="6"/>
+      <rect x="780" y="256" width="340" height="9"/>
+      <rect x="780" y="282" width="340" height="12"/>
+    </g>
+    <path d="M0 318 Q 150 296 300 316 T 600 316 T 900 312 T 1200 318 V360 H0 Z" fill="#14101f"/>
+    <!-- palmeira -->
+    <g stroke="#14101f" stroke-linecap="round" fill="none">
+      <path d="M1075 330 C1070 270 1078 215 1100 165" stroke-width="14"/>
+      <g stroke-width="10">
+        <path d="M1100 165 C1065 130 1025 135 1000 160"/>
+        <path d="M1100 165 C1080 120 1048 105 1015 108"/>
+        <path d="M1100 165 C1110 118 1140 102 1175 108"/>
+        <path d="M1100 165 C1132 135 1168 142 1192 168"/>
+        <path d="M1100 165 C1128 165 1148 188 1152 214"/>
+      </g>
+    </g>
+    <!-- alfinete de mapa -->
+    <g transform="translate(70 72)">
+      <path d="M52 0C23 0 0 23 0 52c0 38 52 96 52 96s52-58 52-96C104 23 81 0 52 0z" fill="#fffaff"/>
+      <circle cx="52" cy="51" r="20" fill="#4fd6d2"/>
+    </g>
+    <g font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" fill="#fffaff">
+      <text x="210" y="138" font-size="76" font-weight="800">Guia GTA VI</text>
+      <text x="214" y="188" font-size="32" font-weight="600" fill="#ffe3f1">Meu guia de Leonida, em português</text>
+      <text x="214" y="236" font-size="23" fill="#d9fffd">Passo a passo · Mapa · Coleções · Trapaças · IA · Offline</text>
+    </g>
+  </g>
+</svg>
