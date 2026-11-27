@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="Guia GTA VI: meu guia de Leonida, em português" width="100%">
+  <img src="docs/banner.svg" alt="Guia Xandy GTA VI: meu guia de Leonida, em português" width="100%">
 </p>
 
 <p align="center">
@@ -43,8 +43,9 @@
 |---|---|---|
 | 🧭 | **Rota por capítulo** | 195 tarefas, principais e opcionais, na ordem em que liberam |
 | ⚠️ | **Pontos sem volta** | Listas do que fazer antes de avançar, para nada se perder |
-| 🗺️ | **Mapa de Leonida** | 7 níveis de zoom, busca, filtros e marcação do que já foi pego |
-| 🎒 | **Coleções** | Mais de 1.600 itens para marcar, incluindo as 480 cartas |
+| 📍 | **Onde fica** | Cada missão mostra num mapinha os lugares citados, numerados, com atalho em cada passo |
+| 🗺️ | **Mapa de Leonida** | Mais de 5.600 pinos com ícones, 7 níveis de zoom, busca, filtros e marcação do que já foi pego |
+| 🎒 | **Coleções** | Mais de 2.200 itens para marcar, com posição no mapa, incluindo as 480 cartas |
 | 🎮 | **Guias** | Trapaças, easter eggs, armas, veículos, dinheiro, troféus, 100% e finais |
 | 🤖 | **Perguntar à IA** | Responde usando os dados do guia e a tela que você está vendo |
 | 🙈 | **Sem spoiler** | Capítulos que você não alcançou ficam escondidos |
@@ -98,10 +99,12 @@ Pesquisa de **27/11/2026**. O jogo é recente e os guias da internet ainda estã
 | Conteúdo | Situação |
 |---|---|
 | Missões dos 5 capítulos | ✅ com passo a passo (tarefas de espera têm só uma orientação curta) |
-| Cartas colecionáveis | ✅ 18 conjuntos com todas as posições |
-| Flamingos de cocaína | 🟡 28 de 125 locais (o 100% pede 100) |
+| Cartas colecionáveis | ✅ 18 conjuntos com todas as posições no mapa |
+| Flamingos de cocaína | ✅ 125 locais no mapa (o 100% pede 100) |
+| Cofres | ✅ 374 no mapa, com a senha |
+| Lugares das missões | 🟡 a maioria marcada; algumas só têm a região ou nenhum lugar fixo |
 | Trapaças | 🟡 61 listadas, 18 com a sequência de botões |
-| Revistas, animais e tags No Flusher | 🟡 incompletos |
+| Animais de caça | 🟡 posições aproximadas |
 
 Os sites divergem em alguns preços e locais. Se o jogo mostrar diferente, vale o jogo.
 
@@ -109,9 +112,11 @@ Os sites divergem em alguns preços e locais. Se o jogo mostrar diferente, vale 
 
 | Conteúdo | Origem | Licença |
 |---|---|---|
-| Mapa e locais | [gtadb.org](https://map.gtadb.org) e colaboradores | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
-| Marcadores do mapa | [GTA Wiki (Fandom)](https://gta.fandom.com/wiki/Map:GTA_VI_Places_of_Interest) | CC BY-SA |
-| Locais das cartas | [The Games Wiki](https://thegameswiki.com/gta6/wiki/collectible-card-sets), traduzidos e resumidos | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
+| Mapa e locais com nome | [gtadb.org](https://map.gtadb.org) e colaboradores | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
+| Pinos, senhas e textos em português | [GTAVIMap](https://jeanropke.github.io/GTAVIMap/), de Jean Ropke (somente os dados) | reutilização dos dados permitida pelo autor, respeitados os direitos dos donos do jogo |
+| Arma do prólogo, furacão e limites das regiões | [GTA Wiki (Fandom)](https://gta.fandom.com/wiki/Map:GTA_VI_Places_of_Interest) | CC BY-SA |
+| Posição das 3 efígies | Lida nas telas de mapa publicadas pelo [PowerPyx](https://www.powerpyx.com/gta-6-search-for-tree-effigies-locations-walkthrough/) | direitos dos respectivos autores |
+| Descrições extras das cartas | [The Games Wiki](https://thegameswiki.com/gta6/wiki/collectible-card-sets), traduzidos e resumidos | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
 | Guias de missões e atividades | Resumos em palavras próprias de [Promptowy](https://promptowy.com/pt-br/gta-6/detonado/), [PowerPyx](https://www.powerpyx.com/gta-6-full-walkthrough-all-missions/), [GTA6 Route](https://gta6route.com/), [Tech4Gamers](https://gta.tech4gamers.com/), [GTA6BUGS](https://gta6bugs.com/) e outros | direitos dos respectivos autores |
 
 As páginas originais aparecem em cada tela do app e em *Guias → Fontes*. Se você é autor de algum conteúdo e quer que ele saia, [abra uma issue](https://github.com/XandyGomes/Guia.GTA.VI/issues).

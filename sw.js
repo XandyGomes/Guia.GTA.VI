@@ -1,6 +1,6 @@
 'use strict';
 /* App funciona sem internet. Troque o número da versão ao mudar arquivos do app. */
-const APP = 'leonida-app-v4';
+const APP = 'leonida-app-v5';
 const MAPA = 'leonida-mapa';
 const ARQUIVOS = ['./', 'index.html', 'css/app.css', 'js/base.js', 'js/mapa.js', 'js/ia.js', 'js/telas.js',
   'dados/guia.json', 'dados/mapa.json', 'dados/blocos.json', 'manifest.webmanifest', 'icones/icone-192.png', 'icones/icone-512.png'];

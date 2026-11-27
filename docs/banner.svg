@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Guia GTA VI: meu guia de Leonida">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Guia Xandy GTA VI: meu guia de Leonida">
   <defs>
     <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#1a1033"/>
@@ -38,7 +38,7 @@
       <circle cx="52" cy="51" r="20" fill="#4fd6d2"/>
     </g>
     <g font-family="'Segoe UI', Roboto, Helvetica, Arial, sans-serif" fill="#fffaff">
-      <text x="210" y="138" font-size="76" font-weight="800">Guia GTA VI</text>
+      <text x="210" y="138" font-size="68" font-weight="800">Guia Xandy GTA VI</text>
       <text x="214" y="188" font-size="32" font-weight="600" fill="#ffe3f1">Meu guia de Leonida, em português</text>
       <text x="214" y="236" font-size="23" fill="#d9fffd">Passo a passo · Mapa · Coleções · Trapaças · IA · Offline</text>
     </g>

@@ -64,7 +64,7 @@ function telaInicio() {
   const unicos = [...new Map(itensCol.map(i => [i.id, i])).values()];
   const abertas = opcionaisAbertas(prox);
   const portao = prox && g.portoes.map((p, i) => ({ p, i })).find(({ p }) => p.cap === prox.cap && missoesDoCap(p.cap).findIndex(m => m.k === p.antes) >= missoesDoCap(p.cap).indexOf(prox));
-  mostrar('Meu Guia de Leonida', `
+  mostrar('Guia Xandy GTA VI', `
     <h2>Estou no capítulo</h2>
     <div class="capitulos">${g.capitulos.map(c => `<button data-cap="${c.n}" class="${c.n === Estado.cap ? 'ativa' : ''}">${c.n}</button>`).join('')}</div>
     ${prox ? `<a class="cartao destaque" href="#/m/${prox.id}"><span class="fraco">PRÓXIMO PASSO · capítulo ${prox.cap}</span>
@@ -110,6 +110,24 @@ function telaCapitulo(n) {
   if (b) b.onclick = () => { Estado.cap = n; salvar(); telaCapitulo(n); };
 }
 
+/* Lugares citados na missão: mapinha, lista numerada e atalhos para o mapa. */
+function ondeFica(m) {
+  const camadas = (m.camadas || []).map(c => Mapa.categoria(c)).filter(Boolean);
+  const botoes = camadas.length ? `<div class="botoes">${camadas.map(c => `<a class="botao" href="#/mapa/c:${esc(c.id)}">${c.icone} Ver no mapa: ${esc(c.nome)}</a>`).join('')}</div>` : '';
+  if (!m.locais.length) {
+    return `<h3>📍 Onde fica</h3><p class="fraco">As fontes não citam um lugar fixo para esta missão: siga o marcador que aparece no mapa do jogo.</p>${botoes}`;
+  }
+  const passos = l => (l.passos.length ? `passo ${l.passos.map(i => i + 1).join(', ')}` : '');
+  return `<h3>📍 Onde fica</h3>
+    <a class="minimapa" href="#/mapa/m:${esc(m.id)}" aria-label="Abrir os locais desta missão no mapa"><canvas id="miniMapa"></canvas><span>Toque para ampliar</span></a>
+    <ol class="lugares">${m.locais.map((l, i) => `<li><a href="#/mapa/m:${esc(m.id)}/${i}"><i>${i + 1}</i><span>${esc(l.nome)}
+      <small>${[l.r ? 'região aproximada' : '', passos(l)].filter(Boolean).join(' · ')}</small></span><b>›</b></a></li>`).join('')}</ol>${botoes}`;
+}
+const lugaresDoPasso = (m, i) => {
+  const l = m.locais.map((x, n) => [x, n]).filter(([x]) => x.passos.includes(i));
+  return l.length ? `<span class="onde">${l.map(([x, n]) => `<a href="#/mapa/m:${esc(m.id)}/${n}">📍 ${n + 1}. ${esc(x.nome)}</a>`).join('')}</span>` : '';
+};
+
 function telaMissao(id, revelar) {
   const m = App.guia.missoes.find(x => x.id === id);
   if (!m) return telaInicio();
@@ -122,7 +140,7 @@ function telaMissao(id, revelar) {
     $('#btRevelar').onclick = () => telaMissao(id, true);
     return;
   }
-  App.contexto = { titulo: `Missão ${m.titulo} (capítulo ${m.cap || 'livre'})`, texto: `Passos: ${m.passos.join(' ')} Escolhas: ${m.escolhas || '-'} Perdível: ${m.perdivel || '-'} Itens: ${m.itens || '-'} Recompensa: ${m.recompensa || '-'}` };
+  App.contexto = { titulo: `Missão ${m.titulo} (capítulo ${m.cap || 'livre'})`, texto: `Locais: ${m.locais.map(l => l.nome).join('; ') || '-'}. Passos: ${m.passos.join(' ')} Escolhas: ${m.escolhas || '-'} Perdível: ${m.perdivel || '-'} Itens: ${m.itens || '-'} Recompensa: ${m.recompensa || '-'}` };
   const marcados = new Set(Estado.passos[id] || []);
   const portoes = App.guia.portoes.map((p, i) => ({ p, i })).filter(({ p }) => p.cap === m.cap && p.antes === m.k);
   const bloco = (titulo, texto, classe = '') => texto ? `<div class="cartao ${classe}"><h4>${titulo}</h4><p>${esc(texto)}</p></div>` : '';
@@ -132,8 +150,9 @@ function telaMissao(id, revelar) {
     <h2>${esc(nome)}</h2>${objetivo ? `<p class="fraco">No jogo: ${esc(objetivo)}</p>` : ''}${m.resumo ? `<p>${esc(m.resumo)}</p>` : ''}
     ${portoes.map(({ p, i }) => cartaoPortao(p, i)).join('')}
     ${bloco('⚠️ Atenção: pode perder', m.perdivel, 'perigo')}
+    ${ondeFica(m)}
     <h3>Passo a passo <span class="fraco">(toque para riscar)</span></h3>
-    <ol class="passos">${m.passos.map((p, i) => `<li data-passo="${i}" class="${marcados.has(i) ? 'ok' : ''}" tabindex="0">${esc(p)}</li>`).join('')}</ol>
+    <ol class="passos">${m.passos.map((p, i) => `<li data-passo="${i}" class="${marcados.has(i) ? 'ok' : ''}" tabindex="0"><span class="texto">${esc(p)}</span>${lugaresDoPasso(m, i)}</li>`).join('')}</ol>
     ${bloco('Escolhas', m.escolhas)}
     ${bloco('🔎 Itens e segredos na missão', m.itens)}
     ${m.dicas && m.dicas.length ? `<div class="cartao"><h4>💡 Dicas</h4><ul class="simples">${m.dicas.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>` : ''}
@@ -161,9 +180,10 @@ function telaMissao(id, revelar) {
       s.has(i) ? s.delete(i) : s.add(i);
       Estado.passos[id] = [...s]; salvar(); li.classList.toggle('ok', s.has(i));
     };
-    li.onclick = trocar;
-    li.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trocar(); } };
+    li.onclick = e => { if (!e.target.closest('a')) trocar(); };
+    li.onkeydown = e => { if (e.target === li && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); trocar(); } };
   });
+  const mini = $('#miniMapa'); if (mini) Mapa.miniatura(mini, m.locais);
 }
 
 function telaColecoes(regiao) {
@@ -308,7 +328,9 @@ function telaGuia(id) {
       <div class="cartao"><p>Guia pessoal, feito por fã, sem vínculo com a Rockstar Games ou a Take-Two. Os textos são resumos em palavras próprias; as páginas originais têm fotos e mais detalhes.</p>
       <p>Mapa e locais: ${link('https://map.gtadb.org', 'GTA VI Map Tiles e Landmarks Data, gtadb.org e colaboradores')} (${link('https://creativecommons.org/licenses/by/4.0/', 'CC BY 4.0')}).<br>
       Marcadores: ${link('https://gta.fandom.com/wiki/Map:GTA_VI_Places_of_Interest', 'GTA Wiki no Fandom')} (CC BY-SA). Textos traduzidos e pinos convertidos para este app.<br>
-      Locais das cartas: ${link('https://thegameswiki.com/gta6/wiki/collectible-card-sets', 'The Games Wiki')} (${link('https://creativecommons.org/licenses/by-nc-sa/4.0/', 'CC BY-NC-SA 4.0')}), traduzidos e resumidos; uso não comercial, sob a mesma licença.</p>
+      Locais das cartas e dos demais itens, com textos em português: ${link('https://jeanropke.github.io/GTAVIMap/', 'GTAVIMap, de Jean Ropke')} (dados reutilizados com crédito; os direitos do jogo são dos donos).<br>
+      Posição das efígies: lida nas telas de mapa publicadas pelo ${link('https://www.powerpyx.com/gta-6-search-for-tree-effigies-locations-walkthrough/', 'PowerPyx')}.<br>
+      Descrições extras das cartas: ${link('https://thegameswiki.com/gta6/wiki/collectible-card-sets', 'The Games Wiki')} (${link('https://creativecommons.org/licenses/by-nc-sa/4.0/', 'CC BY-NC-SA 4.0')}), traduzidos e resumidos; uso não comercial, sob a mesma licença.</p>
       <p>Dados pesquisados em ${esc(App.guia.versao.split('-').reverse().join('/'))}.</p></div>
       <div class="cartao"><h4>Mapas interativos na internet</h4><p>${link('https://mapgenie.io/grand-theft-auto-6/maps/leonida', 'MapGenie')} (tem mais categorias, como animais) · ${link('https://gta6route.com/', 'GTA6 Route')} · ${link('https://map.gtadb.org/', 'gtadb')}</p></div>` +
       [...sites].map(([s, us]) => `<details><summary>${esc(s)} (${us.size} páginas)</summary><ul class="simples">${[...us].sort().map(u => `<li>${link(u, decodeURIComponent(new URL(u).pathname))}</li>`).join('')}</ul></details>`).join('');
@@ -427,7 +449,16 @@ function rotear() {
   if (noMapa) {
     $('#tituloTopo').textContent = 'Mapa de Leonida';
     $$('#abas a').forEach(x => x.classList.toggle('ativa', x.dataset.aba === 'mapa'));
-    Mapa.medir(); if (a) Mapa.irPara(a); else Mapa.pintar();
+    Mapa.medir();
+    if (a && a.startsWith('m:')) {
+      const m = App.guia.missoes.find(x => x.id === a.slice(2));
+      $('#tituloTopo').textContent = 'Locais da missão';
+      Mapa.missao(m, b);
+    } else {
+      Mapa.sairMissao();
+      if (a && a.startsWith('c:')) Mapa.mostrarCategoria(a.slice(2).split(','));
+      else if (a) Mapa.irPara(a); else Mapa.pintar();
+    }
     return;
   }
   if (rota === 'cap') telaCapitulo(Math.max(0, Math.min(5, +a || 0)));
@@ -460,6 +491,8 @@ $('#btVoltar').onclick = () => { history.length > 1 ? history.back() : (location
     tela().innerHTML = '<div class="cartao perigo"><h4>Não consegui carregar o guia</h4><p>Abra o app pelo arquivo <b>iniciar.bat</b> (não dá para abrir o index.html com dois cliques).</p></div>';
     return;
   }
+  App.guia.colecoes.forEach(c => { if (c.antiga) c.itens = c.itens.filter(i => feito(i.id)); });
+  App.guia.colecoes = App.guia.colecoes.filter(c => c.itens.length);
   Mapa.iniciar(App.mapa);
   IA.iniciar();
   window.addEventListener('hashchange', rotear);
