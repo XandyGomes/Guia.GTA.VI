@@ -4,7 +4,7 @@ Guia pessoal em português, feito para usar enquanto joga.
 
 ## Na internet (celular ou computador)
 
-Abra https://xandygomes.github.io/guia-leonida/
+Abra https://xandygomes.github.io/Guia.GTA.VI/
 
 - **Instalar no Android (Chrome):** menu ⋮ > Instalar app (ou Adicionar à tela inicial).
 - **Instalar no iPhone (Safari):** botão Compartilhar > Adicionar à Tela de Início.
