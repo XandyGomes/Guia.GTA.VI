@@ -92,6 +92,8 @@ p{margin:8px 0}
 
 .como{padding-left:22px;margin:10px 0}
 .como li{margin:6px 0}
+.campo{display:block;margin:10px 0;font-size:14px;color:var(--fraco)}
+.campo select{display:block;margin-top:4px;color:var(--texto)}
 
 ul.simples{padding-left:20px;margin:6px 0}
 ul.simples li{margin:4px 0}

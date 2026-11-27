@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
   <img src="https://img.shields.io/badge/IA-Gemini-4285F4?style=flat-square&logo=googlegemini&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/IA-Claude-D97757?style=flat-square&logo=anthropic&logoColor=white" alt="Claude">
   <img src="https://img.shields.io/badge/idioma-pt--BR-009C3B?style=flat-square" alt="pt-BR">
 </p>
 
@@ -58,12 +59,19 @@
    **iPhone (Safari):** botão *Compartilhar* → *Adicionar à Tela de Início*.
 3. Para usar sem internet: ⚙️ *Ajustes* → *Mapa sem internet*.
 
-## 🤖 Ligar a IA (plano gratuito)
+## 🤖 Ligar a IA
 
-1. Crie uma chave em [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
-2. No app, toque em **Perguntar**, cole a chave e salve.
+Escolha no próprio app qual IA responde. Cada uma usa a **sua** chave.
 
-A chave fica **somente no seu aparelho**; este repositório não contém nenhuma. No plano gratuito há limite de uso, e o Google pode usar as conversas para melhorar os produtos dele.
+| | Gemini | Claude |
+|---|---|---|
+| Custo | plano gratuito, com limite de uso | pago por uso, com créditos na conta da API (separado da assinatura do Claude) |
+| Criar a chave | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) | [platform.claude.com/settings/keys](https://platform.claude.com/settings/keys) |
+| Modelos | escolhidos automaticamente | Opus 5.5, Sonnet 5.5 ou Haiku 5.5 |
+
+No app, toque em **Perguntar**, escolha a IA, cole a chave e salve. Também dá para trocar em ⚙️ *Ajustes*.
+
+A chave fica **somente no seu aparelho** e vai direto para a empresa escolhida; este repositório não contém nenhuma. Quem usar o seu navegador pode usar a chave, então defina um limite de gasto na conta da API. No plano gratuito do Gemini, o Google pode usar as conversas para melhorar os produtos dele.
 
 ## 🛠️ Como foi feito
 

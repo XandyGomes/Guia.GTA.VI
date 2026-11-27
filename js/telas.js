@@ -401,18 +401,14 @@ function telaAjustes() {
   mostrar('Ajustes', `
     ${Instalar.cartao(true)}
     <div class="cartao"><h4>Spoilers</h4><label class="opcao"><input type="checkbox" id="aSpoiler" ${Estado.spoiler ? 'checked' : ''}>Esconder missões de capítulos que ainda não alcancei</label></div>
-    <div class="cartao"><h4>Inteligência artificial (Gemini, plano gratuito)</h4>
-      <p class="fraco">${IA.chave() ? 'Chave salva neste aparelho ✓' : 'Nenhuma chave salva.'} Crie a sua em ${link('https://aistudio.google.com/apikey', 'aistudio.google.com/apikey')}.</p>
-      <input type="password" id="aChave" placeholder="Cole uma nova chave" autocomplete="off">
-      <div class="botoes"><button class="botao primario" id="aSalvar">Salvar chave</button>${IA.chave() ? '<button class="botao" id="aApagar">Apagar chave</button>' : ''}</div></div>
+    ${IA.cartaoAjustes()}
     <div class="cartao"><h4>Meu progresso</h4><p class="fraco">Fica salvo neste aparelho. Use o arquivo para passar do computador para o celular ou guardar uma cópia.</p>
       <div class="botoes"><button class="botao" id="aExportar">Salvar arquivo de progresso</button><button class="botao" id="aImportar">Carregar arquivo</button><button class="botao" id="aZerar">Zerar tudo</button></div>
       <input type="file" id="aArquivo" accept="application/json,.json" hidden></div>
     <div class="cartao"><h4>Mapa sem internet</h4><p class="fraco">Guarda os blocos do mapa neste aparelho.</p>
       <div class="botoes"><button class="botao" data-baixar="4">Zoom normal (~8 MB)</button><button class="botao" data-baixar="5">Zoom alto (~26 MB)</button><button class="botao" data-baixar="6">Zoom máximo (~86 MB)</button></div><p id="mapaStatus" class="fraco"></p></div>`, '');
   $('#aSpoiler').onchange = e => { Estado.spoiler = e.target.checked; salvar(); };
-  $('#aSalvar').onclick = () => { const v = $('#aChave').value.trim(); if (v.length < 20) return avisar('Essa chave parece incompleta.'); IA.definirChave(v); avisar('Chave salva.'); telaAjustes(); };
-  const ap = $('#aApagar'); if (ap) ap.onclick = () => { IA.definirChave(''); telaAjustes(); };
+  IA.ligarControles($('#aIA'), () => { const y = scrollY; telaAjustes(); scrollTo(0, y); });
   $('#aExportar').onclick = () => {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([JSON.stringify(Estado)], { type: 'application/json' }));
