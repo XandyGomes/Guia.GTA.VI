@@ -191,9 +191,13 @@ const Mapa = (() => {
     }
   }
 
-  /* Mapinha parado, usado na tela da missão. */
-  async function miniatura(canvas, locais) {
-    const l = canvas.clientWidth || 320, a = canvas.clientHeight || 220, d = Math.min(window.devicePixelRatio || 1, 2);
+  /* Mapinha parado, usado na tela da missão. Redesenha quando o tamanho muda (tela girada, janela redimensionada). */
+  function miniatura(canvas, locais) {
+    new ResizeObserver(() => desenharMiniatura(canvas, locais)).observe(canvas);
+  }
+  async function desenharMiniatura(canvas, locais) {
+    const l = canvas.clientWidth, a = canvas.clientHeight, d = Math.min(window.devicePixelRatio || 1, 2);
+    if (!l || !a) return;
     canvas.width = Math.round(l * d); canvas.height = Math.round(a * d);
     const b = limites(locais, 1400);
     const e = Math.min((l - 50) / b.l, (a - 50) / b.a);
@@ -214,7 +218,9 @@ const Mapa = (() => {
         }));
       }
     }
-    for (const t of await Promise.all(espera)) if (t) g.drawImage(t[0], t[1], t[2], lado * e + 0.6, lado * e + 0.6);
+    const prontos = await Promise.all(espera);
+    if (canvas.width !== Math.round(l * d) || canvas.clientWidth !== l) return;   // mudou de tamanho enquanto carregava
+    for (const t of prontos) if (t) g.drawImage(t[0], t[1], t[2], lado * e + 0.6, lado * e + 0.6);
     locais.forEach(p => { if (p.r) area(g, (p.x - esq) * e, (p.y - cima) * e, p.r * e); });
     locais.map((p, i) => [p, i + 1]).reverse().forEach(([p, n]) => numero(g, (p.x - esq) * e, (alturaNumero(p) - cima) * e, n));
   }

@@ -65,6 +65,7 @@ function telaInicio() {
   const abertas = opcionaisAbertas(prox);
   const portao = prox && g.portoes.map((p, i) => ({ p, i })).find(({ p }) => p.cap === prox.cap && missoesDoCap(p.cap).findIndex(m => m.k === p.antes) >= missoesDoCap(p.cap).indexOf(prox));
   mostrar('Guia Xandy GTA VI', `
+    ${Instalar.cartao()}
     <h2>Estou no capítulo</h2>
     <div class="capitulos">${g.capitulos.map(c => `<button data-cap="${c.n}" class="${c.n === Estado.cap ? 'ativa' : ''}">${c.n}</button>`).join('')}</div>
     ${prox ? `<a class="cartao destaque" href="#/m/${prox.id}"><span class="fraco">PRÓXIMO PASSO · capítulo ${prox.cap}</span>
@@ -398,6 +399,7 @@ async function baixarMapa(nivelMax) {
 function telaAjustes() {
   App.contexto = null;
   mostrar('Ajustes', `
+    ${Instalar.cartao(true)}
     <div class="cartao"><h4>Spoilers</h4><label class="opcao"><input type="checkbox" id="aSpoiler" ${Estado.spoiler ? 'checked' : ''}>Esconder missões de capítulos que ainda não alcancei</label></div>
     <div class="cartao"><h4>Inteligência artificial (Gemini, plano gratuito)</h4>
       <p class="fraco">${IA.chave() ? 'Chave salva neste aparelho ✓' : 'Nenhuma chave salva.'} Crie a sua em ${link('https://aistudio.google.com/apikey', 'aistudio.google.com/apikey')}.</p>

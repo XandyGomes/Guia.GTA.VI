@@ -1,6 +1,6 @@
 'use strict';
 /* App funciona sem internet. Troque o número da versão ao mudar arquivos do app. */
-const APP = 'leonida-app-v5';
+const APP = 'leonida-app-v6';
 const MAPA = 'leonida-mapa';
 const ARQUIVOS = ['./', 'index.html', 'css/app.css', 'js/base.js', 'js/mapa.js', 'js/ia.js', 'js/telas.js',
   'dados/guia.json', 'dados/mapa.json', 'dados/blocos.json', 'manifest.webmanifest', 'icones/icone-192.png', 'icones/icone-512.png'];
@@ -24,7 +24,8 @@ self.addEventListener('fetch', e => {
     }));
     return;
   }
-  e.respondWith(fetch(e.request).then(r => {              // app: tenta atualizar, cai para o guardado
+  // 'no-cache' confere com o servidor, para não misturar arquivos de versões diferentes
+  e.respondWith(fetch(e.request, { cache: 'no-cache' }).then(r => {   // app: tenta atualizar, cai para o guardado
     if (r.ok) { const copia = r.clone(); caches.open(APP).then(c => c.put(e.request, copia)); }
     return r;
   }).catch(() => caches.match(e.request, { ignoreSearch: true }).then(r => r || caches.match('index.html'))));

@@ -90,6 +90,9 @@ p{margin:8px 0}
 .lugares small{display:block;color:var(--fraco)}
 .lugares b{color:var(--agua);font-size:22px}
 
+.como{padding-left:22px;margin:10px 0}
+.como li{margin:6px 0}
+
 ul.simples{padding-left:20px;margin:6px 0}
 ul.simples li{margin:4px 0}
 .tabela{width:100%;overflow-x:auto}
